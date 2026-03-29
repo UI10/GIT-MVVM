@@ -6,32 +6,33 @@ public struct UserListView: View {
 	let onUserTapped: (String) -> Void
 
 	public var body: some View {
-		Group {
-			switch viewModel.state {
-			case .idle, .isLoading:
-				ProgressView()
-					.frame(maxWidth: .infinity, maxHeight: .infinity)
+		ZStack {
+			AppTheme.darkBackground.ignoresSafeArea()
 
-			case .failure:
-				ErrorRetryView(message: "Failed to load users") {
-					Task { await viewModel.loadFirstPage() }
-				}
-
-			case .success(let users):
-				if users.isEmpty {
-					VStack(spacing: 12) {
-						Image(systemName: "person.2.slash")
-							.font(.system(size: 48))
-							.foregroundStyle(.secondary)
-						Text("No users")
-							.font(.title3.bold())
-						Text("This list is empty")
-							.font(.subheadline)
-							.foregroundStyle(.secondary)
+			Group {
+				switch viewModel.state {
+				case .idle, .isLoading:
+					VStack(spacing: 16) {
+						ProgressView()
+							.tint(AppTheme.accentGreen)
+							.scaleEffect(1.2)
+						Text("Loading...")
+							.font(.system(size: 14, weight: .medium))
+							.foregroundStyle(AppTheme.subtitleGray)
 					}
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
-				} else {
-					userList(users)
+
+				case .failure:
+					ErrorRetryView(message: "Failed to load users") {
+						Task { await viewModel.loadFirstPage() }
+					}
+
+				case .success(let users):
+					if users.isEmpty {
+						emptyView
+					} else {
+						userList(users)
+					}
 				}
 			}
 		}
@@ -41,18 +42,48 @@ public struct UserListView: View {
 		.refreshable { await viewModel.loadFirstPage() }
 	}
 
-	private func userList(_ users: [UserSummary]) -> some View {
-		List(users) { user in
-			Button {
-				onUserTapped(user.login)
-			} label: {
-				UserSummaryRow(user: user)
+	private var emptyView: some View {
+		VStack(spacing: 16) {
+			ZStack {
+				Circle()
+					.fill(AppTheme.subtitleGray.opacity(0.1))
+					.frame(width: 88, height: 88)
+
+				Image(systemName: "person.2.slash")
+					.font(.system(size: 36))
+					.foregroundStyle(AppTheme.subtitleGray)
 			}
-			.buttonStyle(.plain)
-			.task {
-				await viewModel.loadNextPageIfNeeded(currentItem: user)
+
+			VStack(spacing: 6) {
+				Text("No Users")
+					.font(.system(size: 20, weight: .bold, design: .rounded))
+					.foregroundStyle(.white)
+
+				Text("This list is empty")
+					.font(.system(size: 14, weight: .medium))
+					.foregroundStyle(AppTheme.subtitleGray)
 			}
 		}
-		.listStyle(.plain)
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
+	}
+
+	private func userList(_ users: [UserSummary]) -> some View {
+		ScrollView {
+			LazyVStack(spacing: 8) {
+				ForEach(users) { user in
+					Button {
+						onUserTapped(user.login)
+					} label: {
+						UserSummaryRow(user: user)
+					}
+					.buttonStyle(ScaleButtonStyle())
+					.task {
+						await viewModel.loadNextPageIfNeeded(currentItem: user)
+					}
+				}
+			}
+			.padding(.horizontal, 16)
+			.padding(.top, 8)
+		}
 	}
 }

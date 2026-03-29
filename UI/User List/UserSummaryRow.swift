@@ -4,20 +4,43 @@ struct UserSummaryRow: View {
 	let user: UserSummary
 
 	var body: some View {
-		HStack(spacing: 12) {
+		HStack(spacing: 14) {
 			AsyncImage(url: user.avatarURL) { image in
 				image.resizable().scaledToFill()
 			} placeholder: {
-				Color.gray.opacity(0.3)
+				AppTheme.avatarPlaceholder
 			}
-			.frame(width: 44, height: 44)
+			.frame(width: 48, height: 48)
 			.clipShape(Circle())
+			.overlay(
+				Circle()
+					.strokeBorder(AppTheme.cardBorder, lineWidth: 1)
+			)
 
-			Text(user.login)
-				.font(.body)
+			VStack(alignment: .leading, spacing: 2) {
+				Text(user.login)
+					.font(.system(size: 16, weight: .semibold, design: .rounded))
+					.foregroundStyle(.white)
+
+				Text("View profile")
+					.font(.system(size: 12, weight: .medium))
+					.foregroundStyle(AppTheme.subtitleGray)
+			}
 
 			Spacer()
+
+			Image(systemName: "chevron.right")
+				.font(.system(size: 13, weight: .semibold))
+				.foregroundStyle(AppTheme.subtitleGray.opacity(0.5))
 		}
-		.padding(.vertical, 4)
+		.padding(12)
+		.background(
+			RoundedRectangle(cornerRadius: 14)
+				.fill(AppTheme.cardBackground)
+				.overlay(
+					RoundedRectangle(cornerRadius: 14)
+						.strokeBorder(AppTheme.cardBorder, lineWidth: 1)
+				)
+		)
 	}
 }

@@ -33,6 +33,7 @@
 		6FD21DD518328F2F198BE33A /* LocalModelConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B254BE5FCE3CC3A360A6B409 /* LocalModelConvertable.swift */; };
 		740A2F50122583F35EFF077E /* PublisherSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B141CC391FD1E7FED4D941EC /* PublisherSpy.swift */; };
 		7489E0EE8757ABB681D15DAE /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B629D43BB297622F1B2ECE /* SkeletonView.swift */; };
+		79125B7F591D14506BE181D5 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62B8E084E79AF37B9EF2461 /* LaunchScreenView.swift */; };
 		7A9C7304736A2A01409841E1 /* SearchUserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB559396A569D56D5CB43C4 /* SearchUserViewModelTests.swift */; };
 		831E651D8D87A7DB0BC3A613 /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9805ED4B9DFE6307F9889 /* HTTPClientSpy.swift */; };
 		83404683C079F9C207750BCF /* GitHubUserServiceWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A994C626D42E525938BF5C /* GitHubUserServiceWithFallbackCompositeTests.swift */; };
@@ -57,6 +58,7 @@
 		D30A4D7E5698DC44CA2A4B6E /* RemoteGitHubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003E7C442E67A896913C0168 /* RemoteGitHubUser.swift */; };
 		D491A246158BE5678ACAF7F3 /* NotFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FEFEFB1C5C4E685705C984 /* NotFoundView.swift */; };
 		D5170FBEB9F3978E88DADC4A /* FollowingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCB190EBFF6397AAE8861AB /* FollowingService.swift */; };
+		DFEA6104A2957C24E1D0CF1E /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD6968C101555ED58EF7A0E /* AppTheme.swift */; };
 		E575BF17EE51F1396FC67B99 /* RemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7341FFC9A827A55F76D509F6 /* RemoteStore.swift */; };
 		E6CE316D53BB1B644350D81D /* CoreDataLocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2514933B750CA42B1DD32B6 /* CoreDataLocalStore.swift */; };
 		E720D48C0CC0689CA51CDFFB /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E68710EBF01E755CA241F5 /* LocalStore.swift */; };
@@ -86,6 +88,7 @@
 		1F83EA32B0BE7F674710134E /* UserSummaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSummaryRow.swift; sourceTree = "<group>"; };
 		213B384A40FA5C054F402AF8 /* GitHubUserCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserCache.swift; sourceTree = "<group>"; };
 		2A0DFF42EF203C537FE1F632 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
+		2BD6968C101555ED58EF7A0E /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		36A994C626D42E525938BF5C /* GitHubUserServiceWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserServiceWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
 		3B02F6EACD5C33AA11EABE81 /* GitHubUserServiceSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserServiceSpy.swift; sourceTree = "<group>"; };
 		46A1E08ED6FD648F14D467CF /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 		D7FEFEFB1C5C4E685705C984 /* NotFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
 		D82C5078F4106280903AE7A9 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		DC38FE2ADDB609207CE90F86 /* GIT+MVVMTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = "GIT+MVVMTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E62B8E084E79AF37B9EF2461 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		E7F9805ED4B9DFE6307F9889 /* HTTPClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientSpy.swift; sourceTree = "<group>"; };
 		EB93ABED5D23AA5C1183C6D7 /* UserProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModelTests.swift; sourceTree = "<group>"; };
 		F63B9758655AAC3AF2BD27F6 /* SearchRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRoute.swift; sourceTree = "<group>"; };
@@ -177,6 +181,14 @@
 				36A994C626D42E525938BF5C /* GitHubUserServiceWithFallbackCompositeTests.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		2B46DEFDB07032085D0EC304 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				2BD6968C101555ED58EF7A0E /* AppTheme.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		2E1204FB159AC3CDB887AE40 /* Presentation */ = {
@@ -289,6 +301,14 @@
 				79FE2B80335E955719B27ED6 /* GitHubUserServiceWithFallbackComposite.swift */,
 			);
 			path = "Composition Helpers";
+			sourceTree = "<group>";
+		};
+		9416530F88939CEFCD972DD5 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				E62B8E084E79AF37B9EF2461 /* LaunchScreenView.swift */,
+			);
+			path = Launch;
 			sourceTree = "<group>";
 		};
 		973AA1A702860E09CDFC3BE4 /* Search User */ = {
@@ -431,8 +451,10 @@
 			isa = PBXGroup;
 			children = (
 				869C1EC4763F29FC2F7FE513 /* Components */,
+				9416530F88939CEFCD972DD5 /* Launch */,
 				51D2F4EC773C57022F599F31 /* Profile */,
 				AFE896A4A4174EF61647E64A /* Search */,
+				2B46DEFDB07032085D0EC304 /* Theme */,
 				BEB659C64C13920FD03CB17C /* User List */,
 			);
 			path = UI;
@@ -535,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				995C9057041BF8C628F35C06 /* AppFactory.swift in Sources */,
+				DFEA6104A2957C24E1D0CF1E /* AppTheme.swift in Sources */,
 				E6CE316D53BB1B644350D81D /* CoreDataLocalStore.swift in Sources */,
 				32F08068F1CA95AA1E1A8C55 /* Endpoint.swift in Sources */,
 				94EEA39867A89A3A8ECB87B6 /* ErrorRetryView.swift in Sources */,
@@ -553,6 +576,7 @@
 				9122A34110C83861437FF882 /* GitHubUserServiceCacheDecorator.swift in Sources */,
 				B71AD411D97ED9A2E789E8E0 /* GitHubUserServiceWithFallbackComposite.swift in Sources */,
 				EB0CD69CD1B9A4E5A51A0E61 /* HTTPClient.swift in Sources */,
+				79125B7F591D14506BE181D5 /* LaunchScreenView.swift in Sources */,
 				6FD21DD518328F2F198BE33A /* LocalModelConvertable.swift in Sources */,
 				E720D48C0CC0689CA51CDFFB /* LocalStore.swift in Sources */,
 				889A0907370A352487A9048C /* ManagedGitHubUser.swift in Sources */,
