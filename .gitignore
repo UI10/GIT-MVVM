@@ -60,3 +60,4 @@ playground.xcworkspace
 # Project docs and Claude
 _docs/
 CLAUDE.md
+.claude/
