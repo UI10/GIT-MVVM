@@ -6,7 +6,7 @@ enum AppTheme {
 	static let cardBackground = Color(red: 0.10, green: 0.10, blue: 0.14)
 	static let cardBorder = Color.white.opacity(0.06)
 	static let subtitleGray = Color(red: 0.60, green: 0.60, blue: 0.65)
-	static let avatarPlaceholder = Color(red: 0.15, green: 0.15, blue: 0.20)
+	static let avatarPlaceholderColor = Color(red: 0.15, green: 0.15, blue: 0.20)
 
 	static let githubGradient = LinearGradient(
 		colors: [
@@ -18,4 +18,13 @@ enum AppTheme {
 	)
 
 	static let cardShadow = Color.black.opacity(0.25)
+
+	static func avatarPlaceholder(size: CGFloat = 24) -> some View {
+		ZStack {
+			avatarPlaceholderColor
+			Image(systemName: "person.circle.fill")
+				.font(.system(size: size))
+				.foregroundStyle(subtitleGray.opacity(0.5))
+		}
+	}
 }

@@ -8,6 +8,7 @@ final class Flow<Route: Hashable>: ObservableObject {
 	}
 
 	func navigateBack() {
+		guard !path.isEmpty else { return }
 		path.removeLast()
 	}
 }

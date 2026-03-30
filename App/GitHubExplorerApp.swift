@@ -17,11 +17,10 @@ struct GitHubExplorerApp: App {
 				}
 			}
 			.preferredColorScheme(.dark)
-			.onAppear {
-				DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
-					withAnimation(.easeOut(duration: 0.5)) {
-						showLaunch = false
-					}
+			.task {
+				try? await Task.sleep(for: .seconds(2.2))
+				withAnimation(.easeOut(duration: 0.5)) {
+					showLaunch = false
 				}
 			}
 		}

@@ -8,7 +8,7 @@ struct UserSummaryRow: View {
 			AsyncImage(url: user.avatarURL) { image in
 				image.resizable().scaledToFill()
 			} placeholder: {
-				AppTheme.avatarPlaceholder
+				AppTheme.avatarPlaceholder(size: 20)
 			}
 			.frame(width: 48, height: 48)
 			.clipShape(Circle())

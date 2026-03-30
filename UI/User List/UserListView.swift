@@ -6,36 +6,34 @@ public struct UserListView: View {
 	let onUserTapped: (String) -> Void
 
 	public var body: some View {
-		ZStack {
-			AppTheme.darkBackground.ignoresSafeArea()
+		Group {
+			switch viewModel.state {
+			case .idle, .isLoading:
+				VStack(spacing: 16) {
+					ProgressView()
+						.tint(AppTheme.accentGreen)
+						.scaleEffect(1.2)
+					Text("Loading...")
+						.font(.system(size: 14, weight: .medium))
+						.foregroundStyle(AppTheme.subtitleGray)
+				}
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
 
-			Group {
-				switch viewModel.state {
-				case .idle, .isLoading:
-					VStack(spacing: 16) {
-						ProgressView()
-							.tint(AppTheme.accentGreen)
-							.scaleEffect(1.2)
-						Text("Loading...")
-							.font(.system(size: 14, weight: .medium))
-							.foregroundStyle(AppTheme.subtitleGray)
-					}
-					.frame(maxWidth: .infinity, maxHeight: .infinity)
+			case .failure:
+				ErrorRetryView(message: "Failed to load users") {
+					Task { await viewModel.loadFirstPage() }
+				}
 
-				case .failure:
-					ErrorRetryView(message: "Failed to load users") {
-						Task { await viewModel.loadFirstPage() }
-					}
-
-				case .success(let users):
-					if users.isEmpty {
-						emptyView
-					} else {
-						userList(users)
-					}
+			case .success(let users):
+				if users.isEmpty {
+					emptyView
+				} else {
+					userList(users)
 				}
 			}
 		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
+		.background(AppTheme.darkBackground)
 		.navigationTitle(title)
 		.navigationBarTitleDisplayMode(.inline)
 		.task { await viewModel.loadFirstPage() }

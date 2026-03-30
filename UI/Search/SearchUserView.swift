@@ -18,7 +18,12 @@ public struct SearchUserView: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.background(AppTheme.darkBackground)
 		.onTapGesture { isSearchFocused = false }
-		.navigationBarHidden(true)
+		.toolbar(.hidden, for: .navigationBar)
+		.onChange(of: viewModel.state) { newState in
+			if case .isLoading = newState {
+				cardAppeared = false
+			}
+		}
 	}
 
 	// MARK: - Header
@@ -44,7 +49,6 @@ public struct SearchUserView: View {
 	private var searchBar: some View {
 		HStack(spacing: 12) {
 			Button {
-				cardAppeared = false
 				isSearchFocused = false
 				Task { await viewModel.searchUser() }
 			} label: {
@@ -62,7 +66,6 @@ public struct SearchUserView: View {
 				.focused($isSearchFocused)
 				.submitLabel(.search)
 				.onSubmit {
-					cardAppeared = false
 					Task { await viewModel.searchUser() }
 				}
 
@@ -191,7 +194,6 @@ public struct SearchUserView: View {
 
 	private func suggestionChip(_ username: String, icon: String) -> some View {
 		Button {
-			cardAppeared = false
 			viewModel.searchText = username
 			isSearchFocused = false
 			Task { await viewModel.searchUser() }
@@ -273,7 +275,7 @@ public struct SearchUserView: View {
 					AsyncImage(url: user.avatarURL) { image in
 						image.resizable().scaledToFill()
 					} placeholder: {
-						AppTheme.avatarPlaceholder
+						AppTheme.avatarPlaceholder(size: 32)
 					}
 					.frame(width: 110, height: 110)
 					.clipShape(Circle())

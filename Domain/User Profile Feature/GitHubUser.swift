@@ -1,6 +1,6 @@
 import Foundation
 
-public struct GitHubUser: Equatable {
+public struct GitHubUser: Hashable {
 	public let id: Int
 	public let login: String
 	public let avatarURL: URL

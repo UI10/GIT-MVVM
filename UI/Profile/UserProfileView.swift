@@ -6,29 +6,27 @@ public struct UserProfileView: View {
 	let onFollowingTapped: (String) -> Void
 
 	public var body: some View {
-		ZStack {
-			AppTheme.darkBackground.ignoresSafeArea()
+		Group {
+			switch viewModel.state {
+			case .idle, .isLoading:
+				SkeletonView()
 
-			Group {
-				switch viewModel.state {
-				case .idle, .isLoading:
-					SkeletonView()
-
-				case .failure(.notFound):
-					ErrorRetryView(message: "User not found") {
-						Task { await viewModel.loadProfile() }
-					}
-
-				case .failure(.serverError):
-					ErrorRetryView(message: "Something went wrong") {
-						Task { await viewModel.loadProfile() }
-					}
-
-				case .success(let user):
-					profileContent(for: user)
+			case .failure(.notFound):
+				ErrorRetryView(message: "User not found") {
+					Task { await viewModel.loadProfile() }
 				}
+
+			case .failure(.serverError):
+				ErrorRetryView(message: "Something went wrong") {
+					Task { await viewModel.loadProfile() }
+				}
+
+			case .success(let user):
+				profileContent(for: user)
 			}
 		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
+		.background(AppTheme.darkBackground)
 		.navigationTitle("Profile")
 		.navigationBarTitleDisplayMode(.inline)
 		.task { await viewModel.loadProfile() }
@@ -46,7 +44,7 @@ public struct UserProfileView: View {
 					AsyncImage(url: user.avatarURL) { image in
 						image.resizable().scaledToFill()
 					} placeholder: {
-						AppTheme.avatarPlaceholder
+						AppTheme.avatarPlaceholder(size: 36)
 					}
 					.frame(width: 120, height: 120)
 					.clipShape(Circle())
