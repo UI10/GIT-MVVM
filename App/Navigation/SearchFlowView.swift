@@ -45,5 +45,6 @@ struct SearchFlowView: View {
 				}
 			}
 		}
+		.background(AppTheme.darkBackground.ignoresSafeArea())
 	}
 }
